@@ -1,0 +1,144 @@
+{
+  "entities": {
+    "expense": {
+      "title": "Expense",
+      "description": "A financial expense logged by an authenticated user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or merchant name of the expense."
+        },
+        "amount": {
+          "type": "number",
+          "description": "Expense monetary amount in dollars."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category for expense tracking (e.g. Housing, Food & Dining, Transportation, Utilities, Entertainment, Healthcare, Shopping, Personal Care, Education, Other)."
+        },
+        "date": {
+          "type": "string",
+          "description": "Expense date in ISO format YYYY-MM-DD."
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment instrument used (e.g. Credit Card, Debit Card, Cash, Bank Transfer)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional notes or details about the expense."
+        },
+        "isRecurring": {
+          "type": "boolean",
+          "description": "Indicates whether this is a recurring monthly bill or subscription."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp created on server."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp updated on server."
+        }
+      },
+      "required": ["userId", "title", "amount", "category", "date", "paymentMethod", "isRecurring", "createdAt", "updatedAt"]
+    },
+    "monthlyBudget": {
+      "title": "MonthlyBudget",
+      "description": "Monthly budget and income configuration for monthly savings calculation.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the owner."
+        },
+        "monthYear": {
+          "type": "string",
+          "description": "Target month in format YYYY-MM (e.g. 2026-10)."
+        },
+        "monthlyIncome": {
+          "type": "number",
+          "description": "Total expected or actual monthly income."
+        },
+        "savingsGoal": {
+          "type": "number",
+          "description": "Target monthly savings amount."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp created on server."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp updated on server."
+        }
+      },
+      "required": ["userId", "monthYear", "monthlyIncome", "savingsGoal", "createdAt", "updatedAt"]
+    },
+    "savingsGoal": {
+      "title": "SavingsGoal",
+      "description": "A savings target or financial fund tracked by the user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the owner."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the savings fund or goal."
+        },
+        "targetAmount": {
+          "type": "number",
+          "description": "Target savings goal amount."
+        },
+        "currentAmount": {
+          "type": "number",
+          "description": "Current accumulated savings amount."
+        },
+        "targetDate": {
+          "type": "string",
+          "description": "Target deadline date in format YYYY-MM-DD."
+        },
+        "category": {
+          "type": "string",
+          "description": "Goal category (e.g. Emergency, Travel, Investment, Purchase)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp created on server."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp updated on server."
+        }
+      },
+      "required": ["userId", "name", "targetAmount", "currentAmount", "targetDate", "category", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/expenses/{expenseId}": {
+      "schema": "expense",
+      "description": "User logged expenses with categorized amounts, dates, payment methods, and timestamps."
+    },
+    "/monthly_budgets/{budgetId}": {
+      "schema": "monthlyBudget",
+      "description": "Monthly income and savings target records scoped to user and month."
+    },
+    "/savings_goals/{goalId}": {
+      "schema": "savingsGoal",
+      "description": "User designated savings goals and accumulated balances."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "FinFlow",
+  "description": "Personal finance dashboard that tracks expenses and provides monthly savings insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
